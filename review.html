@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Reviews - Quick Crave Delivery</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesyuhada.css">
+
+    <style>
+        .video-wrapper {
+            position: relative; width: 100%; height: 320px; overflow: hidden;
+        }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .video-wrapper img   { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .video-wrapper::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 1; }
+        .video-wrapper .overlay-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; color: white; z-index: 3; }
+
+        .section-title    { text-align: center; font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #1a1a1a; margin: 48px 0 8px; letter-spacing: 1px; }
+        .section-subtitle { text-align: center; font-family: 'Poppins', sans-serif; font-size: 15px; color: #888; margin: 0 0 40px; }
+
+        .reviews-page-wrap { max-width: 900px; margin: 0 auto 70px; padding: 0 20px; }
+
+        /* SUMMARY CARD */
+        .summary-card { background: #fff; border: 1px solid #f0e8dd; border-radius: 20px; padding: 32px; box-shadow: 0 6px 24px rgba(0,0,0,0.05); display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
+        .summary-left { text-align: center; min-width: 140px; }
+        .summary-score { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: #1a1a1a; line-height: 1; }
+        .summary-stars { color: #F59E0B; font-size: 16px; margin: 10px 0 6px; }
+        .summary-count { font-family: 'Poppins', sans-serif; font-size: 13px; color: #888; }
+        .summary-bars { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+        .bar-row { display: flex; align-items: center; gap: 10px; }
+        .bar-row .bar-label { font-family: 'Poppins', sans-serif; font-size: 12px; color: #555; width: 42px; flex-shrink: 0; }
+        .bar-track { flex: 1; height: 8px; background: #f0f0f0; border-radius: 6px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #F59E0B; border-radius: 6px; transition: width 0.5s ease; }
+        .bar-row .bar-count { font-family: 'Poppins', sans-serif; font-size: 12px; color: #aaa; width: 28px; text-align: right; flex-shrink: 0; }
+
+        /* FILTER */
+        .review-filter-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+        .review-filter-row button { background: #fff; border: 1px solid #ddd; padding: 8px 18px; border-radius: 22px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: #555; cursor: pointer; transition: all 0.2s; }
+        .review-filter-row button:hover, .review-filter-row button.active { background: #C94B0C; color: #fff; border-color: #C94B0C; }
+
+        /* REVIEW LIST */
+        .review-card { background: #fff; border: 1px solid #f0e8dd; border-radius: 16px; padding: 22px 26px; margin-bottom: 16px; }
+        .review-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+        .review-who { display: flex; align-items: center; gap: 12px; }
+        .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: #FDECD7; color: #C94B0C; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+        .review-name { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: #1a1a1a; }
+        .review-date { font-family: 'Poppins', sans-serif; font-size: 12px; color: #aaa; }
+        .review-stars { color: #F59E0B; font-size: 13px; white-space: nowrap; }
+        .review-text { font-family: 'Poppins', sans-serif; font-size: 14px; color: #555; line-height: 1.65; margin: 0 0 14px; }
+        .review-bottom { display: flex; align-items: center; gap: 14px; }
+        .helpful-btn { background: none; border: 1px solid #eee; color: #888; padding: 6px 14px; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+        .helpful-btn:hover { border-color: #C94B0C; color: #C94B0C; }
+        .helpful-btn.marked { border-color: #C94B0C; color: #C94B0C; background: #FFF3EB; }
+        .review-empty { text-align: center; padding: 50px 20px; font-family: 'Poppins', sans-serif; color: #bbb; }
+
+        /* WRITE REVIEW FORM */
+        .write-review-card { background: #fff; border: 1px solid #f0e8dd; border-radius: 20px; padding: 32px; box-shadow: 0 6px 24px rgba(0,0,0,0.05); margin-bottom: 48px; }
+        .write-review-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: #1a1a1a; margin-bottom: 20px; }
+        .form-label { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 8px; display: block; }
+        .form-row { margin-bottom: 20px; }
+        .form-input, .form-textarea { width: 100%; padding: 12px 16px; border: 1px solid #e5e5e5; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 14px; color: #1a1a1a; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+        .form-input:focus, .form-textarea:focus { border-color: #C94B0C; }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .star-picker { display: flex; gap: 6px; font-size: 26px; }
+        .star-picker i { cursor: pointer; color: #ddd; transition: color 0.15s; }
+        .star-picker i.selected { color: #F59E0B; }
+        .form-error { font-family: 'Poppins', sans-serif; font-size: 13px; color: #C94B0C; margin-top: 10px; display: none; }
+        .form-success { font-family: 'Poppins', sans-serif; font-size: 13px; color: #1a9e5c; margin-top: 10px; display: none; }
+        .submit-review-btn { background: #C94B0C; color: #fff; border: none; padding: 13px 28px; border-radius: 28px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .submit-review-btn:hover { background: #a83e09; }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGO -->
+    <div align="center" style="background:#000000; padding:20px 0;">
+        <img src="pictures/quick crave logo.jpeg" alt="Quick Crave Logo" style="height:150px; width:auto; object-fit:contain;">
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <table width="100%" bgcolor="#C94B0C" cellpadding="15">
+            <tr align="center">
+        <td width="12%"><b><a href="indexx.html" style="text-decoration:none; color:white;">HOME</a></b></td>
+        <td width="12%"><b><a href="menuu.html" style="text-decoration:none; color:white;">MENU</a></b></td>
+        <td width="14%"><b><a href="restoran.html" style="text-decoration:none; color:white;">RESTAURANTS</a></b></td>
+        <td width="13%"><b><a href="promotion.html" class="active" style="text-decoration:none; color:white;">PROMOTIONS</a></b></td>
+        <td width="13%"><b><a href="trackorder.html" style="text-decoration:none; color:white;">TRACK ORDER</a></b></td>
+        <td width="12%"><b><a href="aboutus.html" style="text-decoration:none; color:white;">ABOUT US</a></b></td>
+        <td width="12%"><b><a href="contactus.html" style="text-decoration:none; color:white;">CONTACT US</a></b></td>
+        <td width="12%"><b><a href="review.html" style="text-decoration:none; color:white;">REVIEWS</a></b></td>
+            </tr>
+        </table>
+    </header>
+
+    <!-- VIDEO HEADER -->
+    <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+            <source src="video/reviews-header.mp4" type="video/mp4">
+        </video>
+        <img src="image/reviews-header.jpg" alt="Reviews" onerror="this.style.display='none'">
+        <div class="overlay-text">
+            <h1 style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; margin:0 0 12px;">Customer Reviews</h1>
+            <p style="font-family:'Poppins',sans-serif; font-size:16px; font-weight:400; margin:0; opacity:0.85;">Real feedback from real cravings</p>
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="section-title">What Our Customers Say</h1>
+    <p class="section-subtitle">Honest reviews from the Quick Crave community</p>
+
+    <div class="reviews-page-wrap">
+
+        <!-- SUMMARY -->
+        <div class="summary-card">
+            <div class="summary-left">
+                <div class="summary-score" id="summaryScore">4.6</div>
+                <div class="summary-stars" id="summaryStars"></div>
+                <div class="summary-count" id="summaryCount">Based on 0 reviews</div>
+            </div>
+            <div class="summary-bars" id="summaryBars"></div>
+        </div>
+
+        <!-- FILTER -->
+        <div class="review-filter-row" id="filterRow">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="5">5 ★</button>
+            <button data-filter="4">4 ★</button>
+            <button data-filter="3">3 ★</button>
+            <button data-filter="2">2 ★</button>
+            <button data-filter="1">1 ★</button>
+        </div>
+
+        <!-- REVIEW LIST -->
+        <div id="reviewList"></div>
+
+        <!-- WRITE REVIEW -->
+        <div class="write-review-card">
+            <div class="write-review-title">Write a review</div>
+
+            <div class="form-row">
+                <label class="form-label">Your rating</label>
+                <div class="star-picker" id="starPicker">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label" for="reviewName">Your name</label>
+                <input type="text" id="reviewName" class="form-input" placeholder="e.g. Aina Zulkifli" maxlength="40">
+            </div>
+
+            <div class="form-row">
+                <label class="form-label" for="reviewText">Your review</label>
+                <textarea id="reviewText" class="form-textarea" placeholder="Tell us about your order, delivery time, and food quality..." maxlength="400"></textarea>
+            </div>
+
+            <button class="submit-review-btn" onclick="submitReview()">Submit Review</button>
+            <p class="form-error" id="formError"></p>
+            <p class="form-success" id="formSuccess">Thanks for your feedback! Your review has been posted.</p>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="display:flex; justify-content:space-between; align-items:flex-start; padding:36px 40px; background:#1a1a1a; flex-wrap:wrap; gap:24px;">
+        <div>
+            <img src="pictures/quick crave logo.jpeg" style="height:48px; margin-bottom:10px; filter:brightness(0) invert(1);" alt="Quick Crave Logo">
+            <p style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin:4px 0;">Jalan Pulau Lumut Q U10/Q, Alam Budiman,</p>
+            <p style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin:4px 0;">Kuala Lumpur, 50450</p>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">Reach Us Here</h3>
+            <button onclick="document.location='https:www.instagram.com/quickcrave.my'" style="padding:8px 18px; margin-right:8px; background:#2a2a2a; color:#fff; border:none; border-radius:6px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">Instagram</button>
+            <button onclick="document.location='https:www.tiktok.com/@quickcrave_'" style="padding:8px 18px; background:#2a2a2a; color:#fff; border:none; border-radius:6px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">TikTok</button>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">More Information</h3>
+            <a href="aboutus.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">About Us</a>
+            <a href="contactus.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Contact Us</a>
+            <a href="menuu.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none;">Our Menu</a>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">Helpful Links</h3>
+            <a href="promotions.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Promotions</a>
+            <a href="track.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Track Order</a>
+            <a href="reviews.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Reviews</a>
+        </div>
+    </footer>
+
+    <script>
+        /*
+            DEMO / PLACEHOLDER LOGIC
+            -------------------------------------------------------------
+            This site has no backend/database, so reviews are stored in
+            localStorage under the key "customerReviews". Seed reviews
+            below give the page realistic content on first load; anything
+            a visitor submits through the form is merged in and persists
+            for that browser only (not shared across devices).
+
+            To wire this up to a real backend later: replace loadReviews()
+            with a fetch() to your reviews API, and have submitReview()
+            POST the new review instead of writing to localStorage.
+        */
+
+        const SEED_REVIEWS = [
+            { id: 's1', name: 'Aina Zulkifli', rating: 5, date: '2026-06-28', text: 'Nasi Ayam Gepuk is unbelievably good, and it arrived still hot. Delivery was under 30 minutes. Will definitely order again!', helpful: 12 },
+            { id: 's2', name: 'Rayyan Haziq', rating: 4, date: '2026-06-24', text: 'Chicken burger was solid, fries were a bit soggy by the time it arrived but everything else made up for it.', helpful: 6 },
+            { id: 's3', name: 'Priya Devan', rating: 5, date: '2026-06-19', text: 'Ordered the Special Burger and Milo Ice — best combo. Packaging was neat and the rider was super polite.', helpful: 9 },
+            { id: 's4', name: 'Farid Iskandar', rating: 3, date: '2026-06-15', text: 'Food was good but delivery took almost an hour during peak time. Hope they add more riders during busy hours.', helpful: 4 },
+            { id: 's5', name: 'Michelle Wong', rating: 5, date: '2026-06-10', text: 'The chicken porridge is my go-to comfort food now. Consistent quality every single time I order.', helpful: 15 },
+            { id: 's6', name: 'Danish Amirul', rating: 2, date: '2026-06-02', text: 'My order got mixed up with someone else\'s once. Support was responsive and refunded me quickly though.', helpful: 3 }
+        ];
+
+        let allReviews = [];
+        let selectedStar = 0;
+        const markedHelpful = new Set();
+
+        function loadReviews() {
+            let saved = [];
+            try { saved = JSON.parse(localStorage.getItem('customerReviews') || '[]'); } catch (e) { saved = []; }
+            allReviews = [...saved, ...SEED_REVIEWS];
+        }
+
+        function saveReviews() {
+            let saved = [];
+            try { saved = JSON.parse(localStorage.getItem('customerReviews') || '[]'); } catch (e) { saved = []; }
+            localStorage.setItem('customerReviews', JSON.stringify(saved));
+        }
+
+        function starString(rating) {
+            const full = '★'.repeat(rating);
+            const empty = '☆'.repeat(5 - rating);
+            return full + empty;
+        }
+
+        function renderSummary() {
+            const total = allReviews.length;
+            const avg = total ? (allReviews.reduce((s, r) => s + r.rating, 0) / total) : 0;
+            document.getElementById('summaryScore').textContent = avg.toFixed(1);
+            document.getElementById('summaryStars').textContent = starString(Math.round(avg));
+            document.getElementById('summaryCount').textContent = `Based on ${total} review${total === 1 ? '' : 's'}`;
+
+            const counts = [5, 4, 3, 2, 1].map(star => allReviews.filter(r => r.rating === star).length);
+            const barsEl = document.getElementById('summaryBars');
+            barsEl.innerHTML = [5, 4, 3, 2, 1].map((star, i) => {
+                const pct = total ? Math.round((counts[i] / total) * 100) : 0;
+                return `<div class="bar-row">
+                    <div class="bar-label">${star} ★</div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;"></div></div>
+                    <div class="bar-count">${counts[i]}</div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderReviews(filter) {
+            filter = filter || 'all';
+            const sorted = [...allReviews].sort((a, b) => new Date(b.date) - new Date(a.date));
+            const filtered = filter === 'all' ? sorted : sorted.filter(r => String(r.rating) === filter);
+            const listEl = document.getElementById('reviewList');
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="review-empty">No reviews yet at this rating.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = filtered.map(r => {
+                const initials = r.name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+                const isMarked = markedHelpful.has(r.id);
+                return `<div class="review-card">
+                    <div class="review-top">
+                        <div class="review-who">
+                            <div class="review-avatar">${initials}</div>
+                            <div>
+                                <div class="review-name">${escapeHtml(r.name)}</div>
+                                <div class="review-date">${formatDate(r.date)}</div>
+                            </div>
+                        </div>
+                        <div class="review-stars">${starString(r.rating)}</div>
+                    </div>
+                    <p class="review-text">${escapeHtml(r.text)}</p>
+                    <div class="review-bottom">
+                        <button class="helpful-btn ${isMarked ? 'marked' : ''}" onclick="toggleHelpful('${r.id}', this)">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> Helpful (${r.helpful})
+                        </button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function toggleHelpful(id, btn) {
+            const review = allReviews.find(r => r.id === id);
+            if (!review) return;
+            if (markedHelpful.has(id)) {
+                markedHelpful.delete(id);
+                review.helpful -= 1;
+                btn.classList.remove('marked');
+            } else {
+                markedHelpful.add(id);
+                review.helpful += 1;
+                btn.classList.add('marked');
+            }
+            btn.innerHTML = `<i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> Helpful (${review.helpful})`;
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        document.getElementById('filterRow').addEventListener('click', function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            document.querySelectorAll('#filterRow button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderReviews(btn.dataset.filter);
+        });
+
+        document.getElementById('starPicker').addEventListener('click', function(e) {
+            const star = e.target.closest('i');
+            if (!star) return;
+            selectedStar = parseInt(star.dataset.value, 10);
+            document.querySelectorAll('#starPicker i').forEach(s => {
+                s.classList.toggle('selected', parseInt(s.dataset.value, 10) <= selectedStar);
+            });
+        });
+
+        function submitReview() {
+            const name = document.getElementById('reviewName').value.trim();
+            const text = document.getElementById('reviewText').value.trim();
+            const errorEl = document.getElementById('formError');
+            const successEl = document.getElementById('formSuccess');
+            successEl.style.display = 'none';
+
+            if (!selectedStar) {
+                errorEl.textContent = 'Please select a star rating.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            if (!name) {
+                errorEl.textContent = 'Please enter your name.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            if (!text) {
+                errorEl.textContent = 'Please write a short review before submitting.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            errorEl.style.display = 'none';
+
+            const newReview = {
+                id: 'u' + Date.now(),
+                name,
+                rating: selectedStar,
+                date: new Date().toISOString().slice(0, 10),
+                text,
+                helpful: 0
+            };
+
+            let saved = [];
+            try { saved = JSON.parse(localStorage.getItem('customerReviews') || '[]'); } catch (e) { saved = []; }
+            saved.unshift(newReview);
+            localStorage.setItem('customerReviews', JSON.stringify(saved));
+
+            loadReviews();
+            renderSummary();
+            const activeFilter = document.querySelector('#filterRow button.active');
+            renderReviews(activeFilter ? activeFilter.dataset.filter : 'all');
+
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewText').value = '';
+            selectedStar = 0;
+            document.querySelectorAll('#starPicker i').forEach(s => s.classList.remove('selected'));
+            successEl.style.display = 'block';
+            setTimeout(() => { successEl.style.display = 'none'; }, 4000);
+        }
+
+        loadReviews();
+        renderSummary();
+        renderReviews('all');
+    </script>
+
+</body>
+</html>

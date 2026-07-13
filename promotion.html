@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promotion — Quick Crave</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="stylesyuhada.css">
+<style>
+
+  :root{
+  --teak: #1a1a1a;
+  --teak-light: #2a2a2a;
+  --gold: #C94B0C;
+  --gold-light: #FFA07A;
+  --ivory: #FFF8F0;
+  --ivory-dim: #FDECD7;
+  --indigo: #1a1a1a;
+  --chili: #C94B0C;
+  --ink: #1a1a1a;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-mono: 'Poppins', sans-serif;
+}
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  body{
+    font-family: var(--font-body);
+    background: var(--ivory);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+  }
+  .nav .brand{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--teak);
+  }
+  .nav ul{ display: flex; gap: 32px; list-style: none; }
+  .nav ul a{ font-size: 14px; font-weight: 500; color: var(--teak); opacity: 0.75; }
+  .nav ul a.active{ opacity: 1; border-bottom: 2px solid var(--chili); padding-bottom: 4px; }
+  .nav .btn-order{
+    background: var(--chili);
+    color: var(--ivory);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* ---------- NAVBAR (table links) ---------- */
+  header.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: var(--teak);
+  }
+  .navbar-top .brand{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ivory);
+  }
+  header.navbar table td{
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    text-align: center;
+  }
+  header.navbar table td a{
+    color: white;
+    text-decoration: none;
+    opacity: 0.85;
+    padding-bottom: 4px;
+  }
+  header.navbar table td a:hover{ opacity: 1; }
+  header.navbar table td a.active{
+    opacity: 1;
+    border-bottom: 2px solid white;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: var(--teak);
+    color: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(201,138,43,0.06) 0, rgba(201,138,43,0.06) 2px, transparent 2px, transparent 26px);
+    pointer-events: none;
+  }
+  .hero-inner{
+    position: relative;
+    padding: 90px 0 80px;
+    max-width: 640px;
+  }
+  .hero .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--gold-light); }
+  .hero p{ font-size: 16px; color: var(--ivory-dim); max-width: 460px; }
+
+  /* ---------- SECTION HEAD ---------- */
+  .section{ padding: 88px 0; }
+  .section-head{ max-width: 560px; margin-bottom: 48px; }
+  .eyebrow-dark{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--chili);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .section-head h2{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--teak);
+    line-height: 1.2;
+  }
+  .section-head p{ margin-top: 14px; font-size: 15px; color: #5A4A3C; }
+
+  /* ---------- FEATURED PROMO ---------- */
+  .promo-feature{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    background: var(--indigo);
+    border-radius: 6px;
+    overflow: hidden;
+    color: var(--ivory);
+  }
+  .promo-feature .copy{ padding: 56px 48px; }
+  .promo-feature .badge{
+    display: inline-block;
+    background: var(--chili);
+    color: var(--ivory);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .promo-feature h3{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .promo-feature p{
+    font-size: 14px;
+    color: rgba(245,237,224,0.75);
+    margin-bottom: 28px;
+  }
+  .promo-feature .discount{
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .promo-feature .discount span{
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ivory-dim);
+    display: block;
+    margin-top: 8px;
+  }
+  .promo-feature .media{ background: var(--teak-light); position: relative; }
+  .promo-feature .media::after{
+    content: "ends August 31";
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: rgba(245,237,224,0.55);
+  }
+
+  /* ---------- PROMO LIST (ticket cards) ---------- */
+  .promo-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .promo-card{
+    background: var(--ivory-dim);
+    border-radius: 2px;
+    padding: 26px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .promo-card::before,
+  .promo-card::after{
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--ivory);
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .promo-card::before{ top: -9px; }
+  .promo-card::after{ bottom: -9px; }
+  .promo-card .tag{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chili);
+    margin-bottom: 10px;
+  }
+  .promo-card h3{
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--teak);
+    margin-bottom: 8px;
+  }
+  .promo-card p.desc{
+    font-size: 13.5px;
+    color: #5A4A3C;
+    margin-bottom: 22px;
+    min-height: 42px;
+    flex-grow: 1;
+  }
+  .promo-card .divider{ border-top: 1px dashed rgba(43,27,18,0.25); margin-bottom: 16px; }
+  .promo-card .foot-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .promo-card .foot-row .code{ color: var(--gold); font-weight: 500; }
+  .promo-card .foot-row .valid{ color: #8A7A6C; }
+
+  /* ---------- HOW TO REDEEM ---------- */
+  .steps{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step .num{ font-family: var(--font-mono); font-size: 13px; color: var(--gold); margin-bottom: 12px; }
+  .step h4{
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teak);
+    margin-bottom: 8px;
+  }
+  .step p{ font-size: 13.5px; color: #5A4A3C; }
+
+  /* ---------- CTA FOOTER ---------- */
+  .cta{ background: var(--teak); color: var(--ivory); text-align: center; padding: 90px 0; }
+  .cta h2{ font-family: var(--font-display); font-size: 36px; font-weight: 500; margin-bottom: 16px; }
+  .cta p{ color: var(--ivory-dim); margin-bottom: 32px; }
+  .btn-primary{
+    background: var(--gold);
+    color: var(--teak);
+    padding: 14px 28px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    display: inline-block;
+  }
+
+  footer{ padding: 32px 0; text-align: center; font-size: 13px; color: #8A7A6C; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .nav ul{ display: none; }
+    .hero h1{ font-size: 34px; }
+    .promo-feature{ grid-template-columns: 1fr; }
+    .promo-feature .media{ min-height: 200px; }
+    .promo-grid{ grid-template-columns: 1fr; }
+    .steps{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar-top">
+      <div class="brand">Quick Crave</div>
+      <a href="#order" class="btn-order">Order now</a>
+    </div>
+    <table width="100%" bgcolor="#C94B0C" cellpadding="15">
+      <tr>
+        <td width="12%"><b><a href="indexx.html" style="text-decoration:none; color:white;">HOME</a></b></td>
+        <td width="12%"><b><a href="menuu.html" style="text-decoration:none; color:white;">MENU</a></b></td>
+        <td width="14%"><b><a href="restoran.html" style="text-decoration:none; color:white;">RESTAURANTS</a></b></td>
+        <td width="13%"><b><a href="promotion.html" class="active" style="text-decoration:none; color:white;">PROMOTIONS</a></b></td>
+        <td width="13%"><b><a href="trackorder.html" style="text-decoration:none; color:white;">TRACK ORDER</a></b></td>
+        <td width="12%"><b><a href="aboutus.html" style="text-decoration:none; color:white;">ABOUT US</a></b></td>
+        <td width="12%"><b><a href="contactus.html" style="text-decoration:none; color:white;">CONTACT US</a></b></td>
+        <td width="12%"><b><a href="review.html" style="text-decoration:none; color:white;">REVIEWS</a></b></td>
+      </tr>
+    </table>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Limited-time deals</span>
+      <h1>This month's <em>crave</em> worthy deals.</h1>
+      <p>Grab exclusive discounts, combo deals, and weekend offers — refreshed every month.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="promo-feature">
+        <div class="copy">
+          <span class="badge">Featured deal</span>
+          <div class="discount">25%<span>off group orders (4 items or more)</span></div>
+          <h3>Squad Combo Deal</h3>
+          <p>Valid every day, 12:00 – 20:00. Applies automatically at checkout.</p>
+          <a href="#order" class="btn-primary" style="background:var(--gold); color:var(--teak);">Order now</a>
+        </div>
+        <div class="media"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--ivory-dim); padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">All promotions</span>
+        <h2>Pick your deal</h2>
+        <p>Use the promo code at checkout or show it at the counter.</p>
+      </div>
+      <div class="promo-grid">
+        <div class="promo-card">
+          <span class="tag">Combo</span>
+          <h3>Burger + Fries RM14.90</h3>
+          <p class="desc">Crave Burger, fries, and a drink bundled at a lower price.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">CODE: COMBO19</span><span class="valid">Valid till July 31</span></div>
+        </div>
+        <div class="promo-card">
+          <span class="tag">Weekday</span>
+          <h3>Lunch Rush 15% Off</h3>
+          <p class="desc">Automatic discount on all orders, Monday–Friday.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">Auto at checkout</span><span class="valid">11:00 – 14:00</span></div>
+        </div>
+        <div class="promo-card">
+          <span class="tag">New member</span>
+          <h3>Free Drink Upgrade</h3>
+          <p class="desc">Sign up for the Quick Crave app and get a free drink on your first order.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">CODE: WELCOME1</span><span class="valid">No expiry</span></div>
+        </div>
+        <div class="promo-card">
+          <span class="tag">Delivery</span>
+          <h3>Free Delivery Over RM30</h3>
+          <p class="desc">No delivery fee on orders above RM30 through the app.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">Auto at checkout</span><span class="valid">Ongoing</span></div>
+        </div>
+        <div class="promo-card">
+          <span class="tag">Weekend</span>
+          <h3>Buy 1 Free 1 Fries</h3>
+          <p class="desc">Order any fries and get a second one free, Saturdays &amp; Sundays.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">CODE: B1F1FRIES</span><span class="valid">Sat – Sun only</span></div>
+        </div>
+        <div class="promo-card">
+          <span class="tag">Birthday</span>
+          <h3>Free Dessert on Your Birthday</h3>
+          <p class="desc">Show your ID during your birthday month for a free dessert.</p>
+          <div class="divider"></div>
+          <div class="foot-row"><span class="code">ID required</span><span class="valid">Year-round</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">How to redeem</span>
+        <h2>Three easy steps</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h4>Pick a deal</h4>
+          <p>Browse the list above and find the offer that fits your order.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h4>Place your order</h4>
+          <p>Order online or in-store and enter the promo code at checkout.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h4>Enjoy your meal</h4>
+          <p>The discount applies automatically or gets verified at pickup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="order">
+    <div class="wrap">
+      <h2>Don't miss out</h2>
+      <p>Deals are limited-time and subject to availability.</p>
+      <a href="#" class="btn-primary">Order now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© 2026 Quick Crave. Part of the corporate site.</div>
+  </footer>
+
+</body>
+</html>
