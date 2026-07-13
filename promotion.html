@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Promotion — Quick Crave</title>
+<title>Promotion - Quick Crave Delivery</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="stylesyuhada.css">
+
 <style>
 
   :root{
@@ -25,80 +26,17 @@
   --font-mono: 'Poppins', sans-serif;
 }
 
-  *{ box-sizing: border-box; margin: 0; padding: 0; }
-
   body{
     font-family: var(--font-body);
     background: var(--ivory);
     color: var(--ink);
     line-height: 1.6;
+    margin: 0;
   }
 
   a{ color: inherit; text-decoration: none; }
 
   .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 32px; }
-
-  /* ---------- NAV ---------- */
-  .nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
-  }
-  .nav .brand{
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 22px;
-    color: var(--teak);
-  }
-  .nav ul{ display: flex; gap: 32px; list-style: none; }
-  .nav ul a{ font-size: 14px; font-weight: 500; color: var(--teak); opacity: 0.75; }
-  .nav ul a.active{ opacity: 1; border-bottom: 2px solid var(--chili); padding-bottom: 4px; }
-  .nav .btn-order{
-    background: var(--chili);
-    color: var(--ivory);
-    padding: 10px 20px;
-    border-radius: 3px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  /* ---------- NAVBAR (table links) ---------- */
-  header.navbar{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .navbar-top{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 32px;
-    background: var(--teak);
-  }
-  .navbar-top .brand{
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--ivory);
-  }
-  header.navbar table td{
-    font-family: var(--font-body);
-    font-size: 12.5px;
-    letter-spacing: 0.03em;
-    text-align: center;
-  }
-  header.navbar table td a{
-    color: white;
-    text-decoration: none;
-    opacity: 0.85;
-    padding-bottom: 4px;
-  }
-  header.navbar table td a:hover{ opacity: 1; }
-  header.navbar table td a.active{
-    opacity: 1;
-    border-bottom: 2px solid white;
-  }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -134,10 +72,10 @@
     font-weight: 700;
     font-size: 48px;
     line-height: 1.1;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
   }
   .hero h1 em{ font-style: italic; color: var(--gold-light); }
-  .hero p{ font-size: 16px; color: var(--ivory-dim); max-width: 460px; }
+  .hero p{ font-size: 16px; color: var(--ivory-dim); max-width: 460px; margin: 0; }
 
   /* ---------- SECTION HEAD ---------- */
   .section{ padding: 88px 0; }
@@ -157,6 +95,7 @@
     font-size: 34px;
     color: var(--teak);
     line-height: 1.2;
+    margin: 0;
   }
   .section-head p{ margin-top: 14px; font-size: 15px; color: #5A4A3C; }
 
@@ -187,7 +126,7 @@
     font-weight: 700;
     font-size: 30px;
     line-height: 1.25;
-    margin-bottom: 14px;
+    margin: 0 0 14px;
   }
   .promo-feature p{
     font-size: 14px;
@@ -257,7 +196,7 @@
     font-size: 21px;
     font-weight: 700;
     color: var(--teak);
-    margin-bottom: 8px;
+    margin: 0 0 8px;
   }
   .promo-card p.desc{
     font-size: 13.5px;
@@ -285,17 +224,17 @@
     font-size: 18px;
     font-weight: 700;
     color: var(--teak);
-    margin-bottom: 8px;
+    margin: 0 0 8px;
   }
-  .step p{ font-size: 13.5px; color: #5A4A3C; }
+  .step p{ font-size: 13.5px; color: #5A4A3C; margin: 0; }
 
-  /* ---------- CTA FOOTER ---------- */
+  /* ---------- CTA ---------- */
   .cta{ background: var(--teak); color: var(--ivory); text-align: center; padding: 90px 0; }
-  .cta h2{ font-family: var(--font-display); font-size: 36px; font-weight: 500; margin-bottom: 16px; }
+  .cta h2{ font-family: var(--font-display); font-size: 36px; font-weight: 500; margin: 0 0 16px; }
   .cta p{ color: var(--ivory-dim); margin-bottom: 32px; }
   .btn-primary{
     background: var(--gold);
-    color: var(--teak);
+    color: var(--ivory);
     padding: 14px 28px;
     border-radius: 3px;
     font-weight: 700;
@@ -303,11 +242,8 @@
     display: inline-block;
   }
 
-  footer{ padding: 32px 0; text-align: center; font-size: 13px; color: #8A7A6C; }
-
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px){
-    .nav ul{ display: none; }
     .hero h1{ font-size: 34px; }
     .promo-feature{ grid-template-columns: 1fr; }
     .promo-feature .media{ min-height: 200px; }
@@ -316,26 +252,27 @@
   }
 </style>
 </head>
+
 <body>
 
-  <header class="navbar">
-    <div class="navbar-top">
-      <div class="brand">Quick Crave</div>
-      <a href="#order" class="btn-order">Order now</a>
+    <div align="center" style="background:#000000; padding:20px 0;">
+        <img src="image/quick crave logo.jpeg" alt="Quick Crave Logo" style="height:150px; width:auto; object-fit:contain;">
     </div>
-    <table width="100%" bgcolor="#C94B0C" cellpadding="15">
-      <tr>
-        <td width="12%"><b><a href="index.html" style="text-decoration:none; color:white;">HOME</a></b></td>
-        <td width="12%"><b><a href="menu.html" style="text-decoration:none; color:white;">MENU</a></b></td>
-        <td width="14%"><b><a href="restaurant.html" style="text-decoration:none; color:white;">RESTAURANTS</a></b></td>
-        <td width="13%"><b><a href="promotion.html" class="active" style="text-decoration:none; color:white;">PROMOTIONS</a></b></td>
-        <td width="13%"><b><a href="trackorder.html" style="text-decoration:none; color:white;">TRACK ORDER</a></b></td>
-        <td width="12%"><b><a href="aboutus.html" style="text-decoration:none; color:white;">ABOUT US</a></b></td>
-        <td width="12%"><b><a href="contactus.html" style="text-decoration:none; color:white;">CONTACT US</a></b></td>
-        <td width="12%"><b><a href="review.html" style="text-decoration:none; color:white;">REVIEWS</a></b></td>
-      </tr>
-    </table>
-  </header>
+
+    <header class="navbar">
+        <table width="100%" bgcolor="#C94B0C" cellpadding="15">
+            <tr align="center">
+                <td width="12%"><b><a href="indexx.html" style="text-decoration:none; color:white;">HOME</a></b></td>
+                <td width="12%"><b><a href="menuu.html" style="text-decoration:none; color:white;">MENU</a></b></td>
+                <td width="14%"><b><a href="restoran.html" style="text-decoration:none; color:white;">RESTAURANTS</a></b></td>
+                <td width="13%"><b><a href="promotion.html" class="active" style="text-decoration:none; color:white;">PROMOTIONS</a></b></td>
+                <td width="13%"><b><a href="trackorder.html" style="text-decoration:none; color:white;">TRACK ORDER</a></b></td>
+                <td width="12%"><b><a href="aboutus.html" style="text-decoration:none; color:white;">ABOUT US</a></b></td>
+                <td width="12%"><b><a href="contact.html" style="text-decoration:none; color:white;">CONTACT US</a></b></td>
+                <td width="12%"><b><a href="review.html" style="text-decoration:none; color:white;">REVIEWS</a></b></td>
+            </tr>
+        </table>
+    </header>
 
   <section class="hero">
     <div class="wrap hero-inner">
@@ -353,7 +290,7 @@
           <div class="discount">25%<span>off group orders (4 items or more)</span></div>
           <h3>Squad Combo Deal</h3>
           <p>Valid every day, 12:00 – 20:00. Applies automatically at checkout.</p>
-          <a href="#order" class="btn-primary" style="background:var(--gold); color:var(--teak);">Order now</a>
+          <a href="menuu.html" class="btn-primary" style="background:var(--gold); color:var(--ivory);">Order now</a>
         </div>
         <div class="media"></div>
       </div>
@@ -444,13 +381,35 @@
     <div class="wrap">
       <h2>Don't miss out</h2>
       <p>Deals are limited-time and subject to availability.</p>
-      <a href="#" class="btn-primary">Order now</a>
+      <a href="menuu.html" class="btn-primary">Order now</a>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">© 2026 Quick Crave. Part of the corporate site.</div>
-  </footer>
+    <footer style="display:flex; justify-content:space-between; align-items:flex-start; padding:36px 40px; background:#1a1a1a; flex-wrap:wrap; gap:24px;">
+        <div>
+            <img src="image/quick crave logo.jpeg" style="height:48px; margin-bottom:10px;" alt="Quick Crave Logo">
+            <p style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin:4px 0;">Jalan Pulau Lumut Q U10/Q, Alam Budiman,</p>
+            <p style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin:4px 0;">40170 Shah Alam, Selangor</p>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">Reach Us Here</h3>
+            <button onclick="document.location='https:www.instagram.com/quickcrave.my'" style="padding:8px 18px; margin-right:8px; background:#2a2a2a; color:#fff; border:none; border-radius:6px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">Instagram</button>
+            <button onclick="document.location='https:www.tiktok.com/@quickcrave_'" style="padding:8px 18px; background:#2a2a2a; color:#fff; border:none; border-radius:6px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">TikTok</button>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">More Information</h3>
+            <a href="aboutus.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">About Us</a>
+            <a href="contactus.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Contact Us</a>
+            <a href="menu.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none;">Our Menu</a>
+        </div>
+        <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin-bottom:14px;">Helpful Links</h3>
+            <a href="promotion.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Promotions</a>
+            <a href="trackorder.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Track Order</a>
+            <a href="review.html" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none; margin-bottom:8px;">Reviews</a>
+            <a href="#" style="display:block; font-family:'Poppins',sans-serif; font-size:13px; color:#666; text-decoration:none;">Privacy Policy</a>
+        </div>
+    </footer>
 
 </body>
 </html>
